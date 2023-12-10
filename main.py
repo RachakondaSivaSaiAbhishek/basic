@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
-import random
+import random 
 
 # Initialize an empty task list
 tasks = pd.DataFrame(columns=['description', 'priority'])
@@ -33,8 +33,9 @@ def add_task(description, priority):
     save_tasks()
 
 
-# Function to remove a task by description
+# Function to remove a task by description# Function to remove a task by description
 def remove_task(description):
+    global tasks  # Declare tasks as a global variable
     tasks = tasks[tasks['description'] != description]
     save_tasks()
 
@@ -43,8 +44,7 @@ def list_tasks():
     if tasks.empty:
         print("No tasks available.")
     else:
-        print(tasks)
-
+        print(tasks)      
 # Function to recommend a task based on machine learning
 # Function to recommend a task based on machine learning
 def recommend_task():
@@ -54,13 +54,13 @@ def recommend_task():
         
         if not high_priority_tasks.empty:
             # Choose a random high-priority task
-            random_task = random.choice(high_priority_tasks['description'])
+            random_task = random.choice(high_priority_tasks['description'].tolist())
             print(f"Recommended task: {random_task} - Priority: High")
         else:
             print("No high-priority tasks available for recommendation.")
     else:
         print("No tasks available for recommendations.")
-4
+
 
 # Main menu
 while True:
